@@ -1,2 +1,0 @@
-# Mohamed-Market
-Rating Page
