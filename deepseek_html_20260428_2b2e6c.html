@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تقييم ماركت محمد عيد - Market Mohamed Eid</title>
+    <!-- إضافة مكتبة الأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- إضافة مكتبة QR Code -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js">
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-30deg);
+            font-size: 120px;
+            color: rgba(255, 255, 255, 0.05);
+            pointer-events: none;
+            z-index: 1;
+            white-space: nowrap;
+            font-weight: bold;
+        }
+
+        .main-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            animation: fadeIn 0.6s ease-in-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .silver-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #C0C0C0, #E8E8E8, #A0A0A0);
+            color: #333;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(192, 192, 192, 0.5);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { box-shadow: 0 0 5px rgba(192, 192, 192, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(192, 192, 192, 0.8); }
+            100% { box-shadow: 0 0 5px rgba(192, 192, 192, 0.5); }
+        }
+
+        .silver-badge i {
+            margin-left: 5px;
+        }
+
+        .logo {
+            font-size: 50px;
+            color: #C0C0C0;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 10px rgba(192, 192, 192, 0.6));
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .platform-info {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px solid #C0C0C0;
+            border-radius: 10px;
+            padding: 10px 15px;
+            margin: 15px 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .platform-info strong {
+            color: #667eea;
+        }
+
+        .rating-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .stars {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            direction: ltr;
+        }
+
+        .star {
+            font-size: 40px;
+            color: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .star:hover,
+        .star.active {
+            color: #ffc107;
+            transform: scale(1.2);
+        }
+
+        .star.active {
+            color: #ffc107;
+        }
+
+        .rating-text {
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #C0C0C0;
+            box-shadow: 0 0 0 3px rgba(192, 192, 192, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-qr {
+            background: linear-gradient(135deg, #C0C0C0, #A0A0A0, #808080);
+            margin-bottom: 15px;
+        }
+
+        .btn-qr:hover {
+            box-shadow: 0 10px 20px rgba(192, 192, 192, 0.4);
+        }
+
+        .qr-section {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            display: none;
+            border: 2px solid #C0C0C0;
+        }
+
+        .qr-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        #qrcode {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        #qrcode img {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 3px solid #C0C0C0;
+        }
+
+        .thank-you-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border-radius: 10px;
+            color: #155724;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease-in-out;
+            border: 2px solid #C0C0C0;
+        }
+
+        .thank-you-message.active {
+            display: block;
+        }
+
+        .rating-details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            padding: 0 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .emoji {
+            font-size: 24px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+            color: #888;
+            font-size: 12px;
+        }
+
+        .footer strong {
+            color: #C0C0C0;
+        }
+
+        @media (max-width: 480px) {
+            .main-container {
+                padding: 20px;
+            }
+            
+            .star {
+                font-size: 30px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+
+            .watermark {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- العلامة المائية لاسم المحل -->
+    <div class="watermark">محمد عيد</div>
+
+    <div class="main-container">
+        <div class="header">
+            <!-- شارة سيلفر -->
+            <div class="silver-badge">
+                <i class="fas fa-crown"></i> متجر سيلفر <i class="fas fa-crown"></i>
+            </div>
+            
+            <div class="logo">
+                <i class="fas fa-store-alt"></i>
+            </div>
+            
+            <h1>ماركت محمد عيد</h1>
+            <p class="subtitle">Market Mohamed Eid</p>
+            
+            <div class="platform-info">
+                <i class="fas fa-check-circle"></i> 
+                <strong>مرفوع على منصة سيلفر</strong> - المتجر معتمد وموثوق
+            </div>
+            
+            <p>نحن نقدر رأيك! يرجى تقييم تجربتك معنا</p>
+        </div>
+
+        <form id="ratingForm">
+            <div class="rating-section">
+                <label>تقييمك العام للمحل:</label>
+                <div class="stars" id="starRating">
+                    <span class="star" data-rating="1">★</span>
+                    <span class="star" data-rating="2">★</span>
+                    <span class="star" data-rating="3">★</span>
+                    <span class="star" data-rating="4">★</span>
+                    <span class="star" data-rating="5">★</span>
+                </div>
+                <div class="rating-text" id="ratingText">اختر تقييمك</div>
+                <div class="rating-details">
+                    <span>سيء 😞</span>
+                    <span>ممتاز 😍</span>
+                </div>
+                <input type="hidden" id="ratingValue" name="rating" value="0">
+            </div>
+
+            <div class="form-group">
+                <label for="customerName">اسمك الكريم:</label>
+                <input type="text" id="customerName" placeholder="أدخل اسمك (اختياري)" maxlength="50">
+            </div>
+
+            <div class="form-group">
+                <label for="visitDate">تاريخ الزيارة:</label>
+                <input type="date" id="visitDate">
+            </div>
+
+            <div class="form-group">
+                <label for="serviceType">نوع الخدمة:</label>
+                <select id="serviceType">
+                    <option value="">اختر نوع الخدمة</option>
+                    <option value="شراء منتجات">شراء منتجات</option>
+                    <option value="توصيل طلبات">توصيل طلبات</option>
+                    <option value="استفسار">استفسار</option>
+                    <option value="أخرى">أخرى</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="feedback">ملاحظاتك وتعليقاتك:</label>
+                <textarea id="feedback" placeholder="اكتب رأيك بالتفصيل... (اختياري)" maxlength="500"></textarea>
+            </div>
+
+            <button type="submit" class="btn">
+                <i class="fas fa-paper-plane"></i> إرسال التقييم
+            </button>
+
+            <button type="button" class="btn btn-qr" onclick="generateQRCode()">
+                <i class="fas fa-qrcode"></i> عرض QR Code للتقييم
+            </button>
+        </form>
+
+        <div class="thank-you-message" id="thankYouMessage">
+            <h3>🎉 شكراً جزيلاً!</h3>
+            <p>تم استلام تقييمك بنجاح</p>
+            <p>نحن سعداء بزيارتك لماركت محمد عيد</p>
+            <p style="font-size: 12px; margin-top: 10px;">المتجر مقدم من منصة سيلفر</p>
+        </div>
+
+        <div class="qr-section" id="qrSection">
+            <h3>📱 امسح الكود للتقييم</h3>
+            <p>امسح QR Code بكاميرا هاتفك للدخول إلى صفحة التقييم</p>
+            <p style="font-size: 12px; color: #666;">شارك هذا الكود مع أصدقائك ليقيموا المحل</p>
+            <div id="qrcode"></div>
+            <button class="btn" onclick="closeQR()">
+                <i class="fas fa-times"></i> إغلاق
+            </button>
+        </div>
+
+        <!-- تذييل بحقوق الملكية -->
+        <div class="footer">
+            <p>© 2024 <strong>ماركت محمد عيد</strong> - جميع الحقوق محفوظة</p>
+            <p>مقدم من <i class="fas fa-crown" style="color: #C0C0C0;"></i> <strong>منصة سيلفر</strong></p>
+            <p style="margin-top: 5px;">مالك المتجر: <strong>محمد عيد</strong></p>
+        </div>
+    </div>
+
+    <script>
+        // star rating
+        const stars = document.querySelectorAll('.star');
+        const ratingText = document.getElementById('ratingText');
+        const ratingValue = document.getElementById('ratingValue');
+        let currentRating = 0;
+
+        const ratingEmojis = {
+            0: 'اختر تقييمك',
+            1: 'سيء جداً 😞',
+            2: 'سيء 😐',
+            3: 'جيد 🙂',
+            4: 'جيد جداً 😊',
+            5: 'ممتاز 😍'
+        };
+
+        stars.forEach(star => {
+            star.addEventListener('mouseover', function() {
+                const rating = this.dataset.rating;
+                highlightStars(rating);
+                ratingText.textContent = ratingEmojis[rating];
+            });
+
+            star.addEventListener('mouseout', function() {
+                highlightStars(currentRating);
+                ratingText.textContent = ratingEmojis[currentRating];
+            });
+
+            star.addEventListener('click', function() {
+                currentRating = this.dataset.rating;
+                ratingValue.value = currentRating;
+                highlightStars(currentRating);
+                ratingText.textContent = ratingEmojis[currentRating];
+                
+                // Add pulse animation
+                stars.forEach(s => s.style.transform = 'scale(1)');
+                this.style.transform = 'scale(1.3)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1.2)';
+                }, 200);
+            });
+        });
+
+        function highlightStars(rating) {
+            stars.forEach(star => {
+                star.classList.remove('active');
+                if (star.dataset.rating <= rating) {
+                    star.classList.add('active');
+                }
+            });
+        }
+
+        // Set default date to today
+        document.getElementById('visitDate').valueAsDate = new Date();
+
+        // Form submission
+        document.getElementById('ratingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const rating = ratingValue.value;
+            const customerName = document.getElementById('customerName').value;
+            const visitDate = document.getElementById('visitDate').value;
+            const serviceType = document.getElementById('serviceType').value;
+            const feedback = document.getElementById('feedback').value;
+
+            if (rating === '0') {
+                alert('يرجى اختيار تقييم من 1 إلى 5 نجوم');
+                return;
+            }
+
+            // هنا يمكنك إرسال البيانات إلى الخادم
+            const ratingData = {
+                rating: rating,
+                customerName: customerName || 'زائر',
+                visitDate: visitDate,
+                serviceType: serviceType,
+                feedback: feedback,
+                storeName: 'ماركت محمد عيد',
+                platform: 'سيلفر',
+                owner: 'محمد عيد',
+                timestamp: new Date().toISOString()
+            };
+
+            console.log('بيانات التقييم:', ratingData);
+            
+            // عرض رسالة الشكر
+            showThankYouMessage();
+            
+            // يمكنك إرسال البيانات إلى API هنا
+            // fetch('/api/ratings', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify(ratingData)
+            // });
+
+            // إعادة تعيين النموذج بعد 3 ثواني
+            setTimeout(() => {
+                resetForm();
+            }, 3000);
+        });
+
+        function showThankYouMessage() {
+            const thankYouMessage = document.getElementById('thankYouMessage');
+            thankYouMessage.classList.add('active');
+            
+            setTimeout(() => {
+                thankYouMessage.classList.remove('active');
+            }, 5000);
+        }
+
+        function resetForm() {
+            currentRating = 0;
+            ratingValue.value = '0';
+            highlightStars(0);
+            ratingText.textContent = ratingEmojis[0];
+            document.getElementById('customerName').value = '';
+            document.getElementById('visitDate').valueAsDate = new Date();
+            document.getElementById('serviceType').value = '';
+            document.getElementById('feedback').value = '';
+        }
+
+        // QR Code functions
+        function generateQRCode() {
+            const qrSection = document.getElementById('qrSection');
+            const qrcodeDiv = document.getElementById('qrcode');
+            
+            // Clear previous QR code
+            qrcodeDiv.innerHTML = '';
+            
+            // Show QR section
+            qrSection.classList.add('active');
+            
+            // Get current page URL
+            const currentUrl = window.location.href;
+            
+            // Create QR code with store info
+            const qrData = {
+                store: 'ماركت محمد عيد',
+                platform: 'سيلفر',
+                owner: 'محمد عيد',
+                url: currentUrl,
+                message: 'مرحباً بك في صفحة تقييم ماركت محمد عيد - متجر سيلفر'
+            };
+            
+            // Generate new QR code
+            new QRCode(qrcodeDiv, {
+                text: currentUrl,
+                width: 200,
+                height: 200,
+                colorDark: "#808080",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+            
+            // Scroll to QR section
+            qrSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function closeQR() {
+            const qrSection = document.getElementById('qrSection');
+            qrSection.classList.remove('active');
+        }
+
+        // Add some animation to stars on page load
+        window.addEventListener('load', function() {
+            stars.forEach((star, index) => {
+                setTimeout(() => {
+                    star.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        star.style.transform = 'scale(1)';
+                    }, 200);
+                }, index * 100);
+            });
+        });
+
+        // إضافة تأثيرات خاصة للشارة الفضية
+        console.log('🏪 ماركت محمد عيد - متجر سيلفر');
+        console.log('👑 المالك: محمد عيد');
+        console.log('© جميع الحقوق محفوظة');
+    </script>
+</body>
+</html>
